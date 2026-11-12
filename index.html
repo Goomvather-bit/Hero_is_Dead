@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Hero is Already Dead · Concepto & Visión</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+      :root {
+        --bg: #020d1d;
+        --line: rgba(85, 170, 255, 0.95);
+        --text: #edf6ff;
+        --muted: #bad3ef;
+        --accent: #75cfff;
+        --gold: #ffd86d;
+        --tag: rgba(117, 166, 255, 0.12);
+        --header-blue: #9edff5;
+        --header-shadow: #86d2ef;
+        --card: rgba(17, 35, 52, 0.92);
+        --card-line: rgba(141, 186, 255, 0.2);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        background:
+          linear-gradient(rgba(3, 12, 22, 0.9), rgba(2, 12, 20, 0.96)),
+          radial-gradient(circle at top, rgba(72, 118, 185, 0.2), transparent 38%),
+          var(--bg);
+        font-family: 'Inter', sans-serif;
+        color: var(--text);
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 18px;
+      }
+
+      .page {
+        width: min(1180px, 100%);
+        background: rgba(9, 22, 35, 0.92);
+        border: 1px solid rgba(130, 194, 255, 0.35);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.38);
+      }
+
+      /* ---------- Banner ---------- */
+      .banner {
+        position: relative;
+        min-height: 210px;
+        background: linear-gradient(180deg, var(--header-blue), var(--header-shadow));
+        border-bottom: 3px solid var(--line);
+        overflow: hidden;
+      }
+
+      .cloud-band {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+        background-size: 32px 32px;
+        opacity: 0.25;
+      }
+
+      .banner-art {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 18px 0;
+      }
+
+      .banner-art img {
+        width: min(100%, 1200px);
+        max-height: 190px;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 18px rgba(8, 33, 46, 0.18));
+      }
+
+      /* ---------- Tabs ---------- */
+      .tabs {
+        display: flex;
+        overflow-x: auto;
+        background: rgba(8, 18, 31, 0.95);
+        border-bottom: 3px solid var(--line);
+        scrollbar-width: thin;
+      }
+
+      .tab {
+        flex: 1 0 auto;
+        appearance: none;
+        border: none;
+        border-right: 1px solid rgba(136, 182, 255, 0.15);
+        background: rgba(13, 28, 44, 0.9);
+        color: var(--text);
+        font: inherit;
+        font-size: 0.92rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 58px;
+        padding: 0 18px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .tab:last-child { border-right: none; }
+      .tab.active {
+        background: rgba(17, 40, 62, 0.95);
+        box-shadow: inset 0 -3px 0 var(--line);
+        color: #fff;
+      }
+      .tab:hover { background: rgba(15, 32, 50, 0.98); }
+      .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+
+      /* ---------- Content ---------- */
+      .content {
+        padding: 30px 34px 34px;
+        background: linear-gradient(180deg, rgba(13, 29, 43, 0.96), rgba(10, 20, 33, 1));
+      }
+
+      .header-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-bottom: 2px solid var(--line);
+        padding-bottom: 18px;
+        margin-bottom: 24px;
+      }
+
+      .header-icon {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #ffd86d, #edb840);
+        box-shadow: 0 0 20px rgba(255, 207, 93, 0.5);
+        font-size: 1.4rem;
+      }
+
+      .heading {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+        color: var(--accent);
+        font-weight: 800;
+      }
+
+      .subheading {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .gl {
+        color: #fff;
+        font-weight: 600;
+        border-bottom: 2px dotted var(--gold);
+        cursor: help;
+        transition: background 0.15s ease, color 0.15s ease;
+        border-radius: 3px;
+      }
+
+      .gl:hover,
+      .gl:focus-visible,
+      .gl.open {
+        background: rgba(255, 216, 109, 0.18);
+        color: var(--gold);
+        outline: none;
+      }
+
+      #gl-tip {
+        position: fixed;
+        z-index: 9999;
+        display: none;
+        max-width: min(320px, calc(100vw - 16px));
+        padding: 12px 14px 14px;
+        border-radius: 12px;
+        background: rgba(8, 20, 33, 0.98);
+        border: 1px solid rgba(255, 216, 109, 0.55);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+      }
+
+      #gl-tip strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--gold);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .tab-panel { display: none; animation: fade 0.35s ease; }
+      .tab-panel.active { display: block; }
+
+      @keyframes fade {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: none; }
+      }
+
+
+      #gl-tip span {
+        display: block;
+        color: var(--text);
+        font-size: 0.93rem;
+        line-height: 1.55;
+      }
+
+      /* ---------- Cards ---------- */
+      .card-main,
+      .mini-card {
+        background: var(--card);
+        border: 1px solid var(--card-line);
+        border-radius: 14px;
+      }
+
+      .card-main { padding: 20px 24px; margin-bottom: 18px; }
+      .mini-card { padding: 18px 18px 20px; }
+
+      .card-title {
+        margin: 0 0 12px;
+        font-size: clamp(1.3rem, 1.6vw, 1.8rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        color: #f2f9ff;
+      }
+
+      .card-text, .mini-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+        font-size: 1rem;
+      }
+
+      .card-text + .card-text { margin-top: 10px; }
+
+      .mini-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+      .mini-icon {
+        flex: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(106, 171, 255, 0.12);
+        border: 1px solid rgba(125, 178, 255, 0.22);
+      }
+      .mini-card h3 { margin: 0; font-size: 1.1rem; letter-spacing: -0.03em; }
+
+      .card-grid, .meta-block {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .card-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+      .feature-list, .highlight-list {
+        margin: 0;
+        padding-left: 1.2rem;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      /* ---------- Hero pitch ---------- */
+      .pitch {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .pitch-text {
+        background: linear-gradient(135deg, rgba(30, 60, 90, 0.95), rgba(17, 35, 52, 0.95));
+        border: 1px solid rgba(117, 207, 255, 0.4);
+        border-radius: 16px;
+        padding: 26px 28px;
+      }
+
+      .pitch-text .eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+
+      .pitch-text h3 {
+        margin: 0 0 12px;
+        font-size: clamp(1.4rem, 2.2vw, 2rem);
+        line-height: 1.25;
+        letter-spacing: -0.03em;
+      }
+
+      .pitch-text p { margin: 0; color: var(--muted); line-height: 1.7; }
+
+      .idea-art {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--card);
+        border: 1px solid var(--card-line);
+        border-radius: 16px;
+        min-height: 220px;
+        padding: 14px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .idea-art img {
+        display: block;
+        max-width: 100%;
+        max-height: 220px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.25));
+      }
+
+      .idea-art small { color: var(--muted); font-size: 0.8rem; text-align: center; }
+
+      /* ---------- Mechanics icons ---------- */
+      .mechanic-icons {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 8px;
+      }
+
+      .mechanic-icon {
+        background: rgba(24, 44, 64, 0.9);
+        border: 1px solid var(--card-line);
+        border-radius: 12px;
+        padding: 16px 14px;
+        text-align: center;
+      }
+
+      .mechanic-icon img {
+        width: 56px;
+        height: 56px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto 8px;
+      }
+
+      .mechanic-icon strong { display: block; margin-bottom: 4px; }
+      .mechanic-icon span { display: block; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+
+      /* ---------- KPIs ---------- */
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .kpi {
+        background: rgba(24, 44, 64, 0.9);
+        border: 1px solid var(--card-line);
+        border-radius: 12px;
+        padding: 14px 16px;
+        text-align: center;
+      }
+
+      .kpi strong { display: block; font-size: 1.7rem; color: #8ed4ff; margin-bottom: 4px; }
+      .kpi span { color: var(--muted); font-size: 0.88rem; }
+
+      /* ---------- Steps ---------- */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .step {
+        position: relative;
+        background: var(--card);
+        border: 1px solid var(--card-line);
+        border-radius: 14px;
+        padding: 40px 16px 18px;
+      }
+
+      .step-num {
+        position: absolute;
+        top: -14px;
+        left: 16px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        color: #3a2a00;
+        background: linear-gradient(180deg, #ffd86d, #edb840);
+        box-shadow: 0 0 14px rgba(255, 207, 93, 0.45);
+      }
+
+      .step h4 { margin: 0 0 6px; font-size: 1.05rem; }
+      .step p { margin: 0; color: var(--muted); font-size: 0.93rem; line-height: 1.55; }
+
+      /* ---------- Example box ---------- */
+      .example {
+        border-left: 4px solid var(--gold);
+        background: rgba(255, 216, 109, 0.07);
+        border-radius: 0 12px 12px 0;
+        padding: 14px 18px;
+        margin-bottom: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .example strong { color: var(--gold); }
+
+      /* ---------- Gallery ---------- */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .gallery-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+      figure.gallery-item {
+        margin: 0;
+        overflow: hidden;
+        border-radius: 14px;
+        border: 1px solid var(--card-line);
+        background: var(--card);
+      }
+
+      figure.gallery-item img {
+        display: block;
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        object-position: center;
+        background: rgba(10, 22, 34, 0.9);
+      }
+
+      figure.gallery-item figcaption {
+        padding: 12px 14px 14px;
+        border-top: 1px solid var(--card-line);
+      }
+
+      figcaption strong { display: block; font-size: 0.98rem; margin-bottom: 3px; }
+      figcaption span { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+
+      /* ---------- Video ---------- */
+      .video-wrap {
+        margin: 0 auto 18px;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--card-line);
+        background: var(--card);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+      }
+
+      .video-wrap video {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-height: 72vh;
+        object-fit: cover;
+        background: #060d16;
+      }
+
+      .video-wrap p {
+        margin: 0;
+        padding: 12px 16px 14px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+      }
+
+      /* ---------- Badges & tags ---------- */
+      .badge {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        padding: 3px 10px;
+        border-radius: 999px;
+        text-transform: uppercase;
+      }
+
+      .badge.done { background: rgba(80, 220, 150, 0.15); color: #7df0b5; border: 1px solid rgba(80, 220, 150, 0.4); }
+      .badge.wip { background: rgba(255, 216, 109, 0.14); color: var(--gold); border: 1px solid rgba(255, 216, 109, 0.4); }
+      .badge.idea { background: rgba(160, 130, 255, 0.15); color: #c8b6ff; border: 1px solid rgba(160, 130, 255, 0.4); }
+
+      .tag-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        background: var(--tag);
+        border: 1px solid rgba(143, 189, 255, 0.18);
+        color: #e3f2ff;
+        padding: 7px 12px;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .status-list { list-style: none; margin: 0; padding: 0; }
+      .status-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(141, 186, 255, 0.12);
+        color: var(--muted);
+      }
+      .status-list li:last-child { border-bottom: none; }
+
+      /* ---------- Palette ---------- */
+      .palette { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+      .swatch { border-radius: 12px; overflow: hidden; border: 1px solid var(--card-line); background: var(--card); }
+      .swatch i { display: block; height: 64px; }
+      .swatch span { display: block; padding: 8px 10px; font-size: 0.8rem; color: var(--muted); }
+
+      /* ---------- Timeline ---------- */
+      .timeline { position: relative; margin: 6px 0 18px; padding-left: 34px; }
+      .timeline::before {
+        content: '';
+        position: absolute;
+        left: 11px;
+        top: 6px;
+        bottom: 6px;
+        width: 3px;
+        background: linear-gradient(180deg, var(--line), rgba(85, 170, 255, 0.15));
+        border-radius: 3px;
+      }
+
+      .t-item { position: relative; margin-bottom: 18px; }
+      .t-item::before {
+        content: '';
+        position: absolute;
+        left: -31px;
+        top: 22px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 3px solid var(--line);
+      }
+      .t-item.done::before { background: #7df0b5; border-color: #7df0b5; }
+      .t-item.wip::before { background: var(--gold); border-color: var(--gold); }
+
+      .t-card {
+        background: var(--card);
+        border: 1px solid var(--card-line);
+        border-radius: 14px;
+        padding: 16px 20px;
+      }
+
+      .t-card header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 6px; }
+      .t-card h3 { margin: 0; font-size: 1.1rem; }
+      .t-card p { margin: 0; color: var(--muted); line-height: 1.6; }
+      .t-date { color: var(--accent); font-size: 0.85rem; font-weight: 600; }
+
+      /* ---------- Glossary ---------- */
+      .glossary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .term {
+        background: var(--card);
+        border: 1px solid var(--card-line);
+        border-radius: 12px;
+        padding: 14px 18px;
+      }
+      .term dt { font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+      .term dd { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.95rem; }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 900px) {
+        .card-grid, .meta-block, .gallery-grid, .pitch, .glossary { grid-template-columns: 1fr; }
+        .card-grid.three, .gallery-grid.three { grid-template-columns: 1fr; }
+        .steps, .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .palette { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 560px) {
+        body { padding: 10px; }
+        .page { border-radius: 12px; }
+        .content { padding: 22px 16px 20px; }
+        .steps { grid-template-columns: 1fr; gap: 22px; }
+        .mechanic-icons { grid-template-columns: 1fr; }
+        .palette { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .tab { font-size: 0.85rem; padding: 0 14px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="banner" aria-label="Encabezado visual">
+        <div class="cloud-band"></div>
+        <div class="banner-art">
+          <img src="imagenes_hero/Logo%20THAD.png" alt="The Hero is Already Dead" />
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="Menú de secciones">
+        <button class="tab active" type="button" data-tab="idea"><span>💡</span> Idea</button>
+        <button class="tab" type="button" data-tab="gameplay"><span>🎮</span> Gameplay</button>
+        <button class="tab" type="button" data-tab="prototipo"><span>🎨</span> Prototipo</button>
+        <button class="tab" type="button" data-tab="enemigos"><span>⚔️</span> Enemigos</button>
+        <button class="tab" type="button" data-tab="graficos"><span>🖼️</span> Gráficos</button>
+        <button class="tab" type="button" data-tab="timeline"><span>📅</span> Timeline</button>
+        <button class="tab" type="button" data-tab="equipo"><span>👥</span> Equipo</button>
+        <button class="tab" type="button" data-tab="referencias"><span>📚</span> Referencias</button>
+        <button class="tab" type="button" data-tab="glosario"><span>📖</span> Glosario</button>
+      </nav>
+
+      <main class="content">
+        <div class="header-row">
+          <span class="header-icon" id="header-icon">💡</span>
+          <div>
+            <h2 class="heading" id="section-title">Concepto &amp; Visión</h2>
+            <p class="subheading" id="section-sub">Qué es el juego y por qué es especial</p>
+          </div>
+        </div>
+
+        <!-- ===================== IDEA ===================== -->
+        <section class="tab-panel active" data-panel="idea">
+          <div class="pitch">
+            <div class="pitch-text">
+              <span class="eyebrow">En una frase</span>
+              <h3>Un juego de cartas donde cada decisión cuenta y cada partida es distinta.</h3>
+              <p>
+                Eres un héroe que ya cayó, y tu misión es enfrentar a jefes poderosos usando un mazo de cartas.
+                En cada turno eliges qué cartas jugar para atacar, defenderte o curarte. Si pierdes, empiezas de nuevo,
+                pero cada intento es diferente. Está inspirado en <strong>Slay the Spire</strong> y juegos similares.
+              </p>
+            </div>
+            <div class="idea-art">
+              <img src="imagenes_hero/Fantasma%20reposo%20.png" alt="Fantasma jefe" />
+              <small>El primer jefe: el Fantasma</small>
+            </div>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi"><strong>1</strong><span>Jefe principal listo</span></div>
+            <div class="kpi"><strong>8+</strong><span>Mecánicas principales</span></div>
+            <div class="kpi"><strong>3</strong><span>Mapas previstos</span></div>
+            <div class="kpi"><strong>PC</strong><span>Plataforma base</span></div>
+          </div>
+
+          <div class="card-main">
+            <h3 class="card-title">¿Cómo se entiende más fácil?</h3>
+            <p class="card-text">Piensa en un juego de mesa con cartas, pero en la computadora y con un enemigo que te responde.</p>
+          </div>
+
+          <div class="card-grid three">
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🃏</span><h3>De cartas</h3></div>
+              <p>Tienes un mazo. Cada carta hace algo distinto: golpear al enemigo, protegerte o curarte.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">⏱️</span><h3>Por turnos</h3></div>
+              <p>Nadie corre contra el reloj. Juegas tú, luego juega el enemigo. Hay tiempo para pensar tu estrategia.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🔁</span><h3>Roguelike</h3></div>
+              <p>Si pierdes, la aventura vuelve a empezar, pero con niveles y recompensas distintas cada vez. Por eso no aburre.</p>
+            </article>
+          </div>
+
+          <div class="card-main">
+            <h3 class="card-title">Los tres números que importan</h3>
+            <p class="card-text">Para ganar hay que equilibrar tres cosas. Estos iconos aparecen en el juego:</p>
+            <div class="mechanic-icons">
+              <div class="mechanic-icon">
+                <img src="imagenes_hero/Suma.png" alt="Ataque" />
+                <strong>Ataque</strong>
+                <span>Quita vida al enemigo. Si su vida llega a cero, ganas.</span>
+              </div>
+              <div class="mechanic-icon">
+                <img src="imagenes_hero/Escudo%20.png" alt="Defensa" />
+                <strong>Defensa</strong>
+                <span>Bloquea el daño del enemigo durante el turno.</span>
+              </div>
+              <div class="mechanic-icon">
+                <img src="imagenes_hero/Corazo%CC%81n%20animado%20.png" alt="Salud" />
+                <strong>Salud</strong>
+                <span>Tu vida. Si llega a cero, la partida termina.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🎯</span><h3>Género &amp; Gameplay</h3></div>
+              <p>Juego de cartas por turnos con combate contra jefes. Incluye un gestor de turnos y una base de datos dinámica de cartas, que permite agregar cartas nuevas fácilmente.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">👥</span><h3>Audiencia Objetivo</h3></div>
+              <p>Jugadores de 12+ años que disfrutan de la estrategia, los roguelikes y las historias que se cuentan a través de las mecánicas del juego.</p>
+            </article>
+          </div>
+
+          <div class="card-main">
+            <h3 class="card-title">Qué ya funciona</h3>
+            <ul class="status-list">
+              <li><span>Motor de turnos</span><span class="badge done">Listo</span></li>
+              <li><span>Sistema de cartas base</span><span class="badge done">Listo</span></li>
+              <li><span>Combate contra el primer jefe</span><span class="badge done">Listo</span></li>
+              <li><span>Flujo de juego completo (inicio a fin)</span><span class="badge done">Listo</span></li>
+              <li><span>Sistema de guardado y persistencia</span><span class="badge done">Listo</span></li>
+              <li><span>Balanceo matemático de dificultad</span><span class="badge wip">En progreso</span></li>
+              <li><span>Efectos visuales (VFX) de magia y daño</span><span class="badge wip">En progreso</span></li>
+              <li><span>Rejugabilidad con niveles generados por el juego</span><span class="badge wip">En progreso</span></li>
+            </ul>
+          </div>
+
+          <div class="card-main">
+            <h3 class="card-title">Ideas a futuro</h3>
+            <ul class="feature-list">
+              <li><span class="badge idea">Idea</span> Reliquias: objetos especiales que dan poderes durante toda la partida.</li>
+              <li><span class="badge idea">Idea</span> Más personajes jugables, cada uno con su propio mazo.</li>
+              <li><span class="badge idea">Idea</span> Eventos aleatorios en el mapa (tiendas, descansos, decisiones).</li>
+              <li><span class="badge idea">Idea</span> Modo desafío diario con una partida igual para todos.</li>
+            </ul>
+          </div>
+
+          <div class="meta-block">
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🛠️</span><h3>Tecnología y plataformas</h3></div>
+              <p>Hecho con <strong>Godot 4.3</strong>, un motor de videojuegos gratuito y de código abierto. Se entrega como ejecutable para PC (Windows) y la compilación multiplataforma está preparada.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🏆</span><h3>Objetivos del Proyecto</h3></div>
+              <p><strong>Etapa 1:</strong> motor de turnos, primer jefe, cartas base y flujo completo (30/Jun/2026).<br /><strong>Etapa 2:</strong> 3 mapas, nuevos jefes y VFX final (30/Nov/2026).</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===================== GAMEPLAY ===================== -->
+        <section class="tab-panel" data-panel="gameplay">
+          <div class="card-main">
+            <h3 class="card-title">¿Cómo se juega?</h3>
+            <p class="card-text">
+              El juego gira en torno a cartas, energía, defensa y decisiones estratégicas. Cada turno combina gestión de recursos con lectura del enemigo para sacar ventaja.
+            </p>
+          </div>
+
+          <h3 class="card-title">Un turno en 4 pasos</h3>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span><h4>Robas cartas</h4><p>Al inicio del turno recibes una mano de cartas de tu mazo.</p></div>
+            <div class="step"><span class="step-num">2</span><h4>Ves qué hará el enemigo</h4><p>El jefe muestra su próximo movimiento: atacar o prepararse. Puedes anticiparte.</p></div>
+            <div class="step"><span class="step-num">3</span><h4>Juegas tus cartas</h4><p>Cada carta cuesta energía. Tienes poca, así que tienes que elegir bien.</p></div>
+            <div class="step"><span class="step-num">4</span><h4>Termina el turno</h4><p>El enemigo ejecuta su acción y empieza un turno nuevo.</p></div>
+          </div>
+
+          <div class="example">
+            <strong>Ejemplo:</strong> el Fantasma va a atacar fuerte. Tienes 3 de energía: puedes jugar una carta de Defensa para bloquear el golpe
+            y otra de Ataque para dañarlo, o arriesgarte a atacar más y recibir el daño. Esa decisión es el corazón del juego.
+          </div>
+
+          <div class="card-grid">
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🃏</span><h3>Cartas</h3></div>
+              <p>Se gestionan con un mazo dinámico: ataques, defensas, apoyo y efectos de control que mantienen las decisiones interesantes.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">⚙️</span><h3>Turnos</h3></div>
+              <p>Equilibran la amenaza, la energía disponible y las respuestas inmediatas frente a cada patrón del enemigo.</p>
+            </article>
+          </div>
+
+          <div class="video-wrap" aria-label="Banner del prototipo">
+            <video controls preload="metadata" poster="imagenes_hero/Escenario%202.png">
+              <source src="imagenes_hero/video%20gameplay.mp4" type="video/mp4" />
+              Tu navegador no soporta la reproducción de video.
+            </video>
+            <p>▶ Mira el prototipo en banner para presentar la jugabilidad.</p>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%202.png" alt="Gameplay 1" />
+              <figcaption><strong>Pantalla de combate</strong><span>Aquí se juegan las cartas contra el jefe.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%203.png" alt="Gameplay 2" />
+              <figcaption><strong>Otro momento de la partida</strong><span>El escenario cambia según avanzas.</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- ===================== PROTOTIPO ===================== -->
+        <section class="tab-panel" data-panel="prototipo">
+          <div class="card-main">
+            <h3 class="card-title">¿Qué es un prototipo?</h3>
+            <p class="card-text">
+              Es una primera versión jugable que sirve para comprobar que la idea funciona antes de invertir en el arte final.
+              Este prototipo se centra en la lógica del combate por turnos, la economía de cartas (cuánta energía cuesta cada una) y la dificultad inicial.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%201.png" alt="Escenario 1" />
+              <figcaption><strong>Escenario 1</strong><span>Primer escenario del prototipo.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%202.png" alt="Escenario 2" />
+              <figcaption><strong>Escenario 2</strong><span>Escena de combate con interfaz de cartas.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%203.png" alt="Escenario 3" />
+              <figcaption><strong>Escenario 3</strong><span>Variación visual del campo de batalla.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%204.png" alt="Escenario 4" />
+              <figcaption><strong>Escenario 4</strong><span>Ambiente alternativo para futuros mapas.</span></figcaption>
+            </figure>
+          </div>
+
+          <div class="card-main">
+            <h3 class="card-title">¿Qué demuestra el prototipo?</h3>
+            <ul class="feature-list">
+              <li>Que el combate por turnos es divertido y se entiende rápido.</li>
+              <li>Que el juego se puede jugar de principio a fin sin errores graves.</li>
+              <li>Que se pueden añadir cartas y jefes nuevos sin rehacer todo.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===================== ENEMIGOS ===================== -->
+        <section class="tab-panel" data-panel="enemigos">
+          <div class="card-main">
+            <h3 class="card-title">El Fantasma: el primer jefe</h3>
+            <p class="card-text">
+              Los enemigos tienen patrones claros: te avisan qué harán, y tú decides cómo responder.
+              Sus ataques te obligan a gestionar la defensa, la energía y el daño acumulado.
+            </p>
+          </div>
+
+          <div class="gallery-grid three">
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Fantasma%20reposo%20.png" alt="Fantasma reposo" />
+              <figcaption><strong>En reposo</strong><span>Espera y se prepara.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Fantasma%20ataque%20.png" alt="Fantasma ataque" />
+              <figcaption><strong>Atacando</strong><span>Es el momento de defenderse.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Fantasma%20dan%CC%83o%20.png" alt="Fantasma daño" />
+              <figcaption><strong>Recibiendo daño</strong><span>Reacciona cuando le pegas.</span></figcaption>
+            </figure>
+          </div>
+
+          <div class="card-main">
+            <h3 class="card-title">Efectos visuales</h3>
+            <p class="card-text">Los efectos (VFX) hacen que el juego se sienta vivo: te dicen qué está pasando sin leer texto.</p>
+          </div>
+
+          <div class="gallery-grid three">
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Corazo%CC%81n%20animado%20.png" alt="Corazón animado" />
+              <figcaption><strong>Corazón animado</strong><span>Muestra la salud.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Brillos%20.png" alt="Brillos" />
+              <figcaption><strong>Brillos</strong><span>Efecto de magia al jugar cartas.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Suma.png" alt="Suma" />
+              <figcaption><strong>Suma</strong><span>Indica mejoras y recuperación.</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- ===================== GRAFICOS ===================== -->
+        <section class="tab-panel" data-panel="graficos">
+          <div class="card-main">
+            <h3 class="card-title">Identidad visual</h3>
+            <p class="card-text">
+              Estilo limpio, oscuro y elegante. Usamos azules profundos con iluminación cálida para que lo importante (cartas, vida, daño) siempre destaque.
+            </p>
+          </div>
+
+          <div class="card-main">
+            <h3 class="card-title">Paleta de colores</h3>
+            <div class="palette">
+              <div class="swatch"><i style="background:#020d1d"></i><span>Azul noche<br>Fondo</span></div>
+              <div class="swatch"><i style="background:#112b3f"></i><span>Azul profundo<br>Paneles</span></div>
+              <div class="swatch"><i style="background:#75cfff"></i><span>Celeste<br>Títulos</span></div>
+              <div class="swatch"><i style="background:#9edff5"></i><span>Cielo<br>Cabecera</span></div>
+              <div class="swatch"><i style="background:#ffd86d"></i><span>Dorado<br>Luz cálida</span></div>
+            </div>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Logo%20THAD.png" alt="Logo THAD" />
+              <figcaption><strong>Logo</strong><span>The Hero is Already Dead (THAD).</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%201.png" alt="Escenario principal" />
+              <figcaption><strong>Escenario principal</strong><span>Ambiente base del juego.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%202.png" alt="Segundo escenario" />
+              <figcaption><strong>Segundo escenario</strong><span>Arte pensado para el combate.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="imagenes_hero/Escenario%204.png" alt="Cuarto escenario" />
+              <figcaption><strong>Cuarto escenario</strong><span>Muestra la variedad de mapas.</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- ===================== TIMELINE ===================== -->
+        <section class="tab-panel" data-panel="timeline">
+          <div class="card-main">
+            <h3 class="card-title">Hoja de ruta</h3>
+            <p class="card-text">El proyecto avanza por fases. Cada fase termina con algo que se puede jugar y probar.</p>
+          </div>
+
+          <div class="timeline">
+            <div class="t-item done">
+              <div class="t-card">
+                <header><h3>Fase 1</h3><span class="badge done">Listo</span></header>
+                <p>Prototipo de combate: cartas base, turno, enemigo inicial y estructura jugable.</p>
+              </div>
+            </div>
+            <div class="t-item done">
+              <div class="t-card">
+                <header><h3>Fase 2</h3><span class="badge done">Listo</span></header>
+                <p>Pulido de combate: agregar efectos, buffs, eventos de mapa y mejoras del flujo de partida.</p>
+              </div>
+            </div>
+            <div class="t-item wip">
+              <div class="t-card">
+                <header><h3>Fase 3</h3><span class="badge wip">En progreso</span></header>
+                <p>Finalización del jefe y artefactos: boss final, balance, recompensas y progresión.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-card">
+                <header><h3>Fase 4</h3><span class="badge idea">Próximo</span></header>
+                <p>Pulido final: ajustes visuales, música, UX, polish y entrega del proyecto.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== EQUIPO ===================== -->
+        <section class="tab-panel" data-panel="equipo">
+          <div class="card-main">
+            <h3 class="card-title">Quién hace qué</h3>
+            <p class="card-text">
+              Dirección de proyecto, diseño de sistemas, programación, arte visual, narrativa y balance. El objetivo es una experiencia compacta, estratégica y memorable.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🧠</span><h3>Diseño</h3></div>
+              <p>Define la identidad del juego, el ritmo de los turnos y cómo se comporta cada carta.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">💻</span><h3>Programación</h3></div>
+              <p>Construye el motor de combate, la base de datos de cartas y el control de estados del juego en Godot.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🎨</span><h3>Arte visual</h3></div>
+              <p>Crea los personajes, escenarios, iconos y efectos que dan identidad al juego.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">📖</span><h3>Narrativa y balance</h3></div>
+              <p>Cuida la historia y asegura que el juego sea desafiante sin ser injusto.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===================== REFERENCIAS ===================== -->
+        <section class="tab-panel" data-panel="referencias">
+          <div class="card-main">
+            <h3 class="card-title">Nuestras inspiraciones</h3>
+            <p class="card-text">
+              Nos inspiramos en juegos de cartas, roguelikes y combates contra jefes. Esto es lo que tomamos de cada uno:
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🗡️</span><h3>Slay the Spire</h3></div>
+              <p>La base: combate de cartas por turnos con energía y enemigos que avisan su siguiente movimiento.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🚂</span><h3>Monster Train</h3></div>
+              <p>Ejemplo de cómo hacer cartas con decisiones tácticas profundas y partidas rápidas.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🔥</span><h3>Hades</h3></div>
+              <p>Referencia de rejugabilidad: cada intento se siente distinto y perder también avanza la historia.</p>
+            </article>
+            <article class="mini-card">
+              <div class="mini-head"><span class="mini-icon">🃏</span><h3>Card Quest</h3></div>
+              <p>Referencia de cartas sencillas, claras y fáciles de aprender.</p>
+            </article>
+          </div>
+
+          <div class="tag-grid">
+            <span class="tag">Slay the Spire</span>
+            <span class="tag">Monster Train</span>
+            <span class="tag">Hades</span>
+            <span class="tag">Card Quest</span>
+            <span class="tag">Roguelike</span>
+          </div>
+        </section>
+
+        <!-- ===================== GLOSARIO ===================== -->
+        <section class="tab-panel" data-panel="glosario">
+          <div class="card-main">
+            <h3 class="card-title">Palabras que quizá no conozcas</h3>
+            <p class="card-text">Una guía rápida de los términos que aparecen en esta presentación.</p>
+          </div>
+
+          <dl class="glossary" id="glossary-list" style="margin:0">
+            <div class="term"><dt>Roguelike</dt><dd>Tipo de juego donde, al perder, empiezas de nuevo con una aventura distinta. Cada partida es única.</dd></div>
+            <div class="term"><dt>Deck builder (de cartas)</dt><dd>Juego donde vas armando tu propio mazo de cartas durante la aventura.</dd></div>
+            <div class="term"><dt>Mazo</dt><dd>Tu colección de cartas. De ahí sacas la mano en cada turno.</dd></div>
+            <div class="term"><dt>Energía</dt><dd>Recurso limitado que gastas para jugar cartas. Obliga a elegir bien.</dd></div>
+            <div class="term"><dt>Por turnos</dt><dd>Primero juegas tú, luego el enemigo. No hay prisa.</dd></div>
+            <div class="term"><dt>Jefe</dt><dd>Un enemigo especialmente fuerte que representa un gran desafío.</dd></div>
+            <div class="term"><dt>VFX</dt><dd>Efectos visuales: brillos, destellos y animaciones de magia o daño.</dd></div>
+            <div class="term"><dt>Generación procedural</dt><dd>Los niveles los arma el propio juego al azar, para que no se repitan.</dd></div>
+            <div class="term"><dt>Prototipo</dt><dd>Primera versión jugable, para probar que la idea funciona.</dd></div>
+            <div class="term"><dt>Godot</dt><dd>El programa (motor de videojuegos) con el que se hace el juego. Es gratuito y de código abierto.</dd></div>
+            <div class="term"><dt>Balance</dt><dd>Ajustar números para que el juego sea retador pero justo.</dd></div>
+            <div class="term"><dt>Persistencia</dt><dd>Que el juego pueda guardar tu progreso.</dd></div>
+            <div class="term"><dt>Buffs</dt><dd>Mejoras temporales que potencian a un personaje, como más fuerza o más defensa durante unos turnos.</dd></div>
+            <div class="term"><dt>UX</dt><dd>Experiencia de usuario: qué tan cómodo y claro resulta jugar (menús, botones, información en pantalla).</dd></div>
+            <div class="term"><dt>Polish</dt><dd>Pulido final: los detalles que hacen que el juego se sienta profesional (animaciones, sonidos, ajustes).</dd></div>
+            <div class="term"><dt>Artefactos</dt><dd>Objetos especiales que se consiguen durante la partida y dan ventajas.</dd></div>
+            <div class="term"><dt>Slay the Spire</dt><dd>Videojuego muy popular de cartas por turnos con aventura roguelike. Es la inspiración principal de este proyecto.</dd></div>
+          </dl>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      /* ============================================================
+         PESTAÑAS
+         ============================================================ */
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.tab-panel');
+      const title = document.getElementById('section-title');
+      const sub = document.getElementById('section-sub');
+      const icon = document.getElementById('header-icon');
+
+      const contentMap = {
+        idea: { title: 'Concepto & Visión', sub: 'Qué es el juego y por qué es especial', icon: '💡' },
+        gameplay: { title: 'Gameplay', sub: 'Cómo se juega, paso a paso', icon: '🎮' },
+        prototipo: { title: 'Prototipo', sub: 'La primera versión jugable', icon: '🎨' },
+        enemigos: { title: 'Enemigos y Efectos', sub: 'Los rivales y cómo se ven en acción', icon: '⚔️' },
+        graficos: { title: 'Gráficos', sub: 'El estilo visual del juego', icon: '🖼️' },
+        timeline: { title: 'Timeline', sub: 'El camino del proyecto', icon: '📅' },
+        equipo: { title: 'Equipo', sub: 'Quién hace qué', icon: '👥' },
+        referencias: { title: 'Referencias', sub: 'De dónde viene la inspiración', icon: '📚' },
+        glosario: { title: 'Glosario', sub: 'Términos explicados fácil', icon: '📖' }
+      };
+
+      function showTab(target) {
+        tabs.forEach((btn) => btn.classList.toggle('active', btn.dataset.tab === target));
+        panels.forEach((panel) => panel.classList.toggle('active', panel.dataset.panel === target));
+
+        const current = contentMap[target] || contentMap.idea;
+        title.textContent = current.title;
+        sub.textContent = current.sub;
+        icon.textContent = current.icon;
+
+        hideTip();
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          showTab(tab.dataset.tab);
+          tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        });
+      });
+
+      const TERMS = [
+        { dt: 'Roguelike', re: 'roguelikes?' },
+        { dt: 'Deck builder (de cartas)', re: 'deck ?builder' },
+        { dt: 'Mazo', re: 'mazos?' },
+        { dt: 'Energía', re: 'energía' },
+        { dt: 'Por turnos', re: 'por turnos' },
+        { dt: 'Jefe', re: 'jefes?|boss' },
+        { dt: 'VFX', re: 'vfx' },
+        { dt: 'Generación procedural', re: 'generación procedural|generados por el juego' },
+        { dt: 'Prototipo', re: 'prototipos?' },
+        { dt: 'Godot', re: 'godot' },
+        { dt: 'Balance', re: 'balance|balanceo' },
+        { dt: 'Persistencia', re: 'persistencia' },
+        { dt: 'Buffs', re: 'buffs?' },
+        { dt: 'UX', re: 'ux' },
+        { dt: 'Polish', re: 'polish' },
+        { dt: 'Artefactos', re: 'artefactos?' },
+        { dt: 'Slay the Spire', re: 'slay the spire' }
+      ];
+
+      const definitions = new Map();
+
+      function buildGlossary() {
+        document.querySelectorAll('#glossary-list .term').forEach((term) => {
+          const name = term.querySelector('dt').textContent.trim();
+          const text = term.querySelector('dd').textContent.trim();
+          definitions.set(name, text);
+        });
+
+        document.querySelectorAll('.tab-panel').forEach((panel) => {
+          if (panel.dataset.panel === 'glosario') return;
+
+          TERMS.forEach((t) => {
+            if (!definitions.has(t.dt)) return;
+
+            const rx = new RegExp('(?<![\\p{L}])(?:' + t.re + ')(?![\\p{L}])', 'iu');
+            const walker = document.createTreeWalker(panel, NodeFilter.SHOW_TEXT, {
+              acceptNode(node) {
+                if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                if (node.parentElement.closest('.gl, script, style, button')) return NodeFilter.FILTER_REJECT;
+                return NodeFilter.FILTER_ACCEPT;
+              }
+            });
+
+            let node;
+            while ((node = walker.nextNode())) {
+              const match = rx.exec(node.nodeValue);
+              if (!match) continue;
+
+              const found = node.splitText(match.index);
+              found.splitText(match[0].length);
+
+              const span = document.createElement('span');
+              span.className = 'gl';
+              span.tabIndex = 0;
+              span.dataset.term = t.dt;
+              span.textContent = found.nodeValue;
+              found.parentNode.replaceChild(span, found);
+              break;
+            }
+          });
+        });
+      }
+
+      const tip = document.createElement('div');
+      tip.id = 'gl-tip';
+      tip.setAttribute('role', 'tooltip');
+      tip.innerHTML = '<strong></strong><span></span>';
+      document.body.appendChild(tip);
+
+      let currentGl = null;
+
+      function showTip(el) {
+        const name = el.dataset.term;
+        const text = definitions.get(name);
+        if (!text) return;
+
+        if (currentGl && currentGl !== el) currentGl.classList.remove('open');
+        currentGl = el;
+        el.classList.add('open');
+
+        tip.querySelector('strong').textContent = name;
+        tip.querySelector('span').textContent = text;
+        tip.style.display = 'block';
+
+        const r = el.getBoundingClientRect();
+        const tw = tip.offsetWidth;
+        const th = tip.offsetHeight;
+
+        let top = r.bottom + 10;
+        if (top + th > window.innerHeight - 8) top = r.top - th - 10;
+        if (top < 8) top = 8;
+
+        let left = r.left + r.width / 2 - tw / 2;
+        left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+
+        tip.style.top = top + 'px';
+        tip.style.left = left + 'px';
+      }
+
+      function hideTip() {
+        tip.style.display = 'none';
+        if (currentGl) currentGl.classList.remove('open');
+        currentGl = null;
+      }
+
+      document.addEventListener('mouseover', (e) => {
+        const el = e.target.closest('.gl');
+        if (el) showTip(el);
+      });
+      document.addEventListener('mouseout', (e) => {
+        if (e.target.closest('.gl')) hideTip();
+      });
+
+      document.addEventListener('focusin', (e) => {
+        const el = e.target.closest('.gl');
+        if (el) showTip(el);
+      });
+      document.addEventListener('focusout', (e) => {
+        if (e.target.closest('.gl')) hideTip();
+      });
+
+      document.addEventListener('click', (e) => {
+        const el = e.target.closest('.gl');
+        if (el) {
+          if (currentGl === el && tip.style.display === 'block' && e.pointerType === 'touch') hideTip();
+          else showTip(el);
+        } else {
+          hideTip();
+        }
+      });
+
+      window.addEventListener('scroll', hideTip, { passive: true });
+      window.addEventListener('resize', hideTip);
+
+      buildGlossary();
+    </script>
+  </body>
+</html>
