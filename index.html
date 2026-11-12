@@ -463,6 +463,25 @@
         background: rgba(10, 22, 34, 0.9);
       }
 
+      .decoration-preview {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(7, 17, 28, 0.12), rgba(7, 17, 28, 0.12)),
+          url("imagenes_hero/Escenario%201.png") center / 100% 100%;
+      }
+
+      .decoration-preview img {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+
       figure.gallery-item figcaption {
         padding: 12px 14px 14px;
         border-top: 1px solid var(--card-line);
@@ -829,6 +848,22 @@
             </p>
           </div>
 
+          <div class="video-wrap" aria-label="Tráiler del prototipo">
+            <video controls preload="metadata" poster="imagenes_hero/Escenario%201.png">
+              <source src="prototipo%20trailer%20.mp4" type="video/mp4" />
+              Tu navegador no soporta la reproducción de video.
+            </video>
+            <p>▶ Tráiler del prototipo.</p>
+          </div>
+
+          <div class="video-wrap" aria-label="Gameplay del prototipo">
+            <video controls preload="metadata" poster="imagenes_hero/Escenario%202.png">
+              <source src="imagenes_hero/video%20gameplay.mp4" type="video/mp4" />
+              Tu navegador no soporta la reproducción de video.
+            </video>
+            <p>▶ Gameplay del prototipo.</p>
+          </div>
+
           <div class="gallery-grid">
             <figure class="gallery-item">
               <img src="imagenes_hero/Escenario%201.png" alt="Escenario 1" />
@@ -940,6 +975,40 @@
             <figure class="gallery-item">
               <img src="imagenes_hero/Escenario%204.png" alt="Cuarto escenario" />
               <figcaption><strong>Cuarto escenario</strong><span>Muestra la variedad de mapas.</span></figcaption>
+            </figure>
+          </div>
+
+          <div class="card-main">
+            <h3 class="card-title">Decoración de escenarios</h3>
+            <p class="card-text">
+              Espadas, telarañas, calaveras y raíces añaden detalles al entorno. Aquí se muestran como capas sobre un escenario del juego.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-item">
+              <div class="decoration-preview">
+                <img src="Decoracion/Espada%201.png" alt="" />
+              </div>
+              <figcaption><strong>Espadas</strong><span>Detalles para dar carácter a los escenarios.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <div class="decoration-preview">
+                <img src="Decoracion/Tela%20ara%C3%B1a%201.png" alt="" />
+              </div>
+              <figcaption><strong>Telarañas</strong><span>Un toque de abandono y misterio.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <div class="decoration-preview">
+                <img src="Decoracion/Skull%201.png" alt="" />
+              </div>
+              <figcaption><strong>Calaveras</strong><span>Pequeños elementos que refuerzan el tono oscuro.</span></figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <div class="decoration-preview">
+                <img src="Decoracion/Raices%201.png" alt="" />
+              </div>
+              <figcaption><strong>Raíces</strong><span>Formas orgánicas para enmarcar el escenario.</span></figcaption>
             </figure>
           </div>
         </section>
